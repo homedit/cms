@@ -1,0 +1,10 @@
+coverage
+ddt
+flake8
+jsonschema
+mock
+nose
+pep8
+python-coveralls
+testtools
+tox

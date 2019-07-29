@@ -1,0 +1,8 @@
+requests
+boto3
+flask
+flask-cors
+flask-jwt
+python-jose
+gunicorn
+zappa
