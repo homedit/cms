@@ -6,16 +6,15 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from flask_jwt import JWT, jwt_required
 
-from cms import aws_account_manager as account_manager
-from cms import github
-from cms import validator
-
-
 
 logging.getLogger().setLevel(logging.INFO)
 app = Flask(__name__)
 CORS(app)
 
+api = app
+
+if __name__ == "__main__":
+    app.run()
     
 
 @app.route('/auth/login', methods=['POST'])

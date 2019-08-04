@@ -65,8 +65,19 @@ Note - for zappa deployment purposes, these variables are also defined in the `z
 Running locally as a REST API (Flask)
 ------------------------------
 
+Change into the nested `cms` folder
 ```
-gunicorn cms.flask_api:app --bind 127.0.0.1:8001
+cd cms
+```
+
+On Unix based systems that support gunicorn, run:
+```
+gunicorn app:api --bind 127.0.0.1:8001
+```
+
+Alternatively (eg on Windows where gunicorn is not supported) you can run directly using Flask 
+```
+flask run -h 127.0.0.1 -p 8001
 ```
 
 

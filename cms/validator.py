@@ -2,7 +2,7 @@
 import re
 import string
 
-from cms import aws_account_manager as account_manager
+import aws_account_manager as account_manager
 
 def log_message(list, field, message):
 	list.append({
