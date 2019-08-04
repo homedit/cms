@@ -52,7 +52,7 @@ class AccountManager(object):
 		        key_index = i
 		        break
 		if key_index == -1:
-		    print('Public key not found in jwks.json')
+		    logging.warning('Public key not found in jwks.json')
 		    return False
 
 		# construct the public key

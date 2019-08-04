@@ -6,7 +6,8 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from flask_jwt import JWT, jwt_required
 
-from cms import account_manager
+from cms import aws_account_manager as account_manager
+from cms import github
 from cms import validator
 
 
@@ -106,7 +107,20 @@ def accounts():
         else:
             return jsonify(result), 400
 
-   
+
+@app.route('/git/<path:url>', methods=['GET'])
+def gitproxy(url):
+    # proxy the call to github
+    git = github.Client()
+    r = git.proxy(url)
+
+    try:
+        json_object = r.json()
+        return jsonify(json_object), r.status_code
+
+    except ValueError:
+        return r.text, r.status_code
+
 
 @app.route('/', methods=['GET'])
 def homedoc():

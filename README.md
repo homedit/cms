@@ -3,6 +3,16 @@ CMS
 
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/drawbuildplay/seo_report/master/LICENSE)
 
+How Stuff Works
+--------------------------------------------
+
+1.  Authentication is handled by the cms/aws_account_manager.py Module.  This module interacts with AWS Cognito to register users, and provide authentication.  
+
+If you want to build a handler for a different JWT auth provider, implement a module with the same interface, and import that into the flask_api.py.
+
+2. Content is stored in a github repo in Markdown where your Hugo website resides.  If you want to integrate with Gitlab or Bitbucket or something else, implement your own github_storage.py Module with the same interface and import that into the flask_api.py.
+
+
 
 Create your User Pool in AWS Cognito
 --------------------------------------------
@@ -39,6 +49,9 @@ export AWS_COGNITO_CLIENT_ID="<YOUR COGNITO APP CLIENT ID>"
 export AWS_COGNITO_CLIENT_SECRET="<YOUR COGNITO APP CLIENT SECRET>"
 export AWS_COGNITO_USER_POOL_ID="<YOUR COGNITO USER POOL ID>"
 export AWS_COGNITO_REGION="us-east-1"
+export GITHUB_TOKEN=""
+export GITHUB_OWNER=""
+export GITHUB_REPO=""
 ```
 
 Source the script locally to set your environment variables for the app to use.
@@ -88,8 +101,10 @@ Configure your `zappa_settings.json` file:
             "AWS_COGNITO_CLIENT_SECRET": "",
             "AWS_COGNITO_USER_POOL_ID": "",
             "AWS_COGNITO_REGION": "us-east-1",
+            "GITHUB_TOKEN": "",
+            "GITHUB_OWNER": "",
+            "GITHUB_REPO": ""
         }
-
     }
 }
 ```
